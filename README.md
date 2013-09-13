@@ -1,4 +1,4 @@
-node.js
-=======
+node-ircbot.js
+==============
 
-a swirling miasma of node code
+a modular IRC bot written in node.js
