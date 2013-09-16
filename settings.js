@@ -1,6 +1,12 @@
 var modules = {};
 var servers = {};
 
+/* global settings */
+module.exports.reconnect_timeout = 10000;
+module.exports.reconnect_attempts = 100;
+module.exports.rejoin_on_kick = true;
+module.exports.rejoin_timeout = 1000;
+
 /* server object */
 servers["test"] = {
 
@@ -22,7 +28,6 @@ servers["test"] = {
 	]
 	,"realname":	"github"
 	,"userhost":	"github@github.com"
-	
 };
 
 /* module object */

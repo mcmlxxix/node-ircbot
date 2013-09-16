@@ -65,8 +65,7 @@ botCommand["TEST"] = {
 	execute:		function(srv,target,user,args) {
 		srv.privmsg(target,"Server: " + srv.host+":"+srv.port);
 		srv.privmsg(target,"Target: " + target);
-		srv.privmsg(target,"User: " + util.inspect(user));
-		srv.privmsg(target,"Arguments: " + util.inspect(args));
+		srv.privmsg(target,"Arguments: " + util.inspect(args).replace(/[\r\n\t]/g,'').replace(/\s+/g,' '));
 	}
 };
 
@@ -79,7 +78,6 @@ botCommand["TEST"] = {
 //serverCTCP["PING"] = function(srv,user,cmd) {
 //	srv.notice(user.nick,"PONG");
 //}
-
 
 /* uncomment exports as necessary if creating custom server/CTCP commands */
 module.exports.command = botCommand;

@@ -1,5 +1,6 @@
 /* console logging */
 log = require('./lib/log');
+log("Node.js IRC bot - running node.js " + process.version,LOG_WARNING);
 
 /* global classes */
 Module = require('./lib/Module');
@@ -7,7 +8,6 @@ Server = require('./lib/Server');
 Channel = require('./lib/Channel');
 Handler = require('./lib/Handler');
 User = require('./lib/User');
-Emitter = require('events').EventEmitter;
 
 /* global libraries */
 net = require('net');
@@ -70,12 +70,12 @@ ircbot = new (function() {
 
 		process.on('SIGINT', function () {
 			// happens when you press Ctrl+C
-			//process.exit();
+			process.exit();
 		});
 
 		process.on('SIGTERM', function () {
 			// usually called with kill
-			//process.exit();
+			process.exit();
 		});
 		
 		process.on('uncaughtException', function(err) {
