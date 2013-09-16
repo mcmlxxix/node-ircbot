@@ -21,6 +21,7 @@ Command["TEST"] = {
 	execute:		function(srv,target,user,args) {
 		srv.privmsg(target,"Server: " + srv.host+":"+srv.port);
 		srv.privmsg(target,"Target: " + target);
+		srv.privmsg(target,"Args  : " + util.inspect(args));
 	}
 };
 ```
