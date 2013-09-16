@@ -122,6 +122,7 @@ ircbot = new (function() {
 				usr
 			);
 			srv.id = s;
+			srv.setMaxListeners(1);
 			
 			/* store server */
 			this.servers[s.toUpperCase()] = srv;
