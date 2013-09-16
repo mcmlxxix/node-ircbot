@@ -1,13 +1,19 @@
+/* load a library (and clear its cache) */
+loadFile = function(file) {
+	delete require.cache[require.resolve(file)];
+	return require(file);
+}
+
 /* console logging */
-log = require('./lib/log');
+log = loadFile('./lib/log');
 log("Node.js IRC bot - running node.js " + process.version,LOG_WARNING);
 
 /* global classes */
-Module = require('./lib/Module');
-Server = require('./lib/Server');
-Channel = require('./lib/Channel');
-Handler = require('./lib/Handler');
-User = require('./lib/User');
+Module = loadFile('./lib/Module');
+Server = loadFile('./lib/Server');
+Channel = loadFile('./lib/Channel');
+Handler = loadFile('./lib/Handler');
+User = loadFile('./lib/User');
 
 /* global libraries */
 net = require('net');
@@ -15,12 +21,15 @@ rl = require('readline');
 util = require('util');
 vm = require('vm');
 
-/* custom libraries */
-irc = require('./lib/protocol');
-core = require('./lib/core');
+/* protocol libraries */
+irc = loadFile('./lib/protocol');
+
+/* core bot commands */
+core = loadFile('./lib/core');
 
 /* bot settings */
-settings = require(process.argv[2]?process.argv[2]:'./settings');
+sFile = process.argv[2]?process.argv[2]:'./settings';
+settings = loadFile(sFile);
 
 /* main module list object */
 modules = new (function() {
@@ -29,24 +38,27 @@ modules = new (function() {
 	/* initialize modules */
 	this.init = function() {
 		for(var m in settings.modules) {
-			log("loading module information: " + m,1);
 			var mm = settings.modules[m];
-			
-			/* create module */
-			var mod = new Module(
-				mm.name,
-				mm.file,
-				mm.channels,
-				mm.enabled
-			);
-			
-			/* store module */
-			this.list[m.toUpperCase()] = mod;
-			
-			/* load module data */
-			mod.init();		
+			this.load(mm);
 		}	
+	}
+
+	/* load a module */
+	this.load = function(mm) {
+		log("loading module information: " + mm.name,LOG_INFO);
+		/* create module */
+		var mod = new Module(
+			mm.name,
+			mm.file,
+			mm.channels,
+			mm.enabled
+		);
 		
+		/* store module */
+		this.list[mm.name.toUpperCase()] = mod;
+		
+		/* load module data */
+		mod.init();		
 	}
 	
 	/* go! */
@@ -85,8 +97,8 @@ ircbot = new (function() {
 
 		/* initialize servers */
 		for(var s in settings.servers) {
-			log("loading server information: " + s,LOG_DEBUG);
 			var ss = settings.servers[s];
+			log("loading server information: " + ss.host,LOG_INFO);
 			
 			/* skip disabled servers */
 			if(!ss.enabled)
@@ -104,13 +116,15 @@ ircbot = new (function() {
 				ss.host,
 				ss.port,
 				ss.password,
+				ss.ops,
 				ss.channels,
 				ss.prefix,
 				usr
 			);
+			srv.id = s;
 			
 			/* store server */
-			this.servers[s] = srv;
+			this.servers[s.toUpperCase()] = srv;
 			
 			/* create socket */
 			srv.connect();
@@ -153,4 +167,3 @@ ircbot = new (function() {
 
 /* instantiate */
 handler = new Handler();
-

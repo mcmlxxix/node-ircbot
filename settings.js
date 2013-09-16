@@ -14,8 +14,14 @@ servers["test"] = {
 	"host":			"irc.teksavvy.ca"
 	,"port":		6667
 	,"password":	undefined
-	,"prefix":		"!"
+
+	/* server options */
 	,"enabled":		true
+	,"prefix":		"!"
+	,"ops": 	[
+		"yournick"
+		,"mynick"
+	]
 	
 	/* channels to join on connection */
 	,"channels": [
