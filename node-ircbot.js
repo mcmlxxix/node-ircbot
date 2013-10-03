@@ -119,6 +119,7 @@ ircbot = new (function() {
 				ss.ops,
 				ss.channels,
 				ss.prefix,
+				ss.separator,
 				usr
 			);
 			srv.id = s;

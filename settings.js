@@ -18,6 +18,7 @@ servers["test"] = {
 	/* server options */
 	,"enabled":		true
 	,"prefix":		"!"
+	,"separator": 	";;"
 	,"ops": 	[
 		"yournick"
 		,"mynick"
