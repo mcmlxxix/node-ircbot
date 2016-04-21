@@ -21,7 +21,7 @@ net = require('net');
 rl = require('readline');
 util = require('util');
 vm = require('vm');
-log = loadFile('log');
+log = require('node-logger');
 log("Node.js IRC bot - running node.js " + process.version,LOG_WARNING);
 
 /* global classes */

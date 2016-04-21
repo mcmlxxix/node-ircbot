@@ -1,0 +1,33 @@
+{
+  "name": "node-ircbot",
+  "description": "Modular IRC bot written in node.js",
+  "version": "1.0.0",
+  "author": {
+    "name": "Matt Johnson",
+    "email": "mdj1979@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/mcmlxxix/node-ircbot.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mcmlxxix/node-ircbot/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/mcmlxxix/node-ircbot/LICENSE"
+    }
+  ],
+  "main": "./node-ircbot",
+  "keywords": [
+    "client",
+    "irc",
+    "bot",
+    "modular",
+    "chat"
+  ],
+  "dependencies": {
+    "node-logger": "git://github.com/mcmlxxix/node-logger.git"
+  }
+}
