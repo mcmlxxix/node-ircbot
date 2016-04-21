@@ -9,14 +9,9 @@ module.exports.rejoin_on_kick = true;
 module.exports.rejoin_timeout = 1000;
 
 /* user list */
-users["mcmlxxix"] = {
+users["admin"] = {
 	level:99,
-	pass:"alex527"
-};
-
-users["echicken"] = {
-	level:99,
-	pass:"faggit"
+	pass:"admin"
 };
 
 /* server object */
