@@ -18,13 +18,13 @@ users["admin"] = {
 servers["synchronet"] = {
 
 	/* server host information */
-	"host":			"vert.synchro.net"
-	,"port":		6667
+	"host":		"vert.synchro.net"
+	,"port":	6667
 	,"password":	undefined
 
 	/* server options */
-	,"enabled":		true
-	,"prefix":		";"
+	,"enabled":	true
+	,"prefix":	";"
 	,"separator": 	";;"
 	,"ops": 	[
 		"mcmlxxix"
@@ -32,28 +32,18 @@ servers["synchronet"] = {
 	
 	/* channels to join on connection */
 	,"channels": [
-		"#coa-admin cocksauce",
 		"#node.js"
 	]
 	
 	/* alias,mo information */
 	,"nick": [
-		"Phillip"
+		"botface"
 	]
-	,"realname":	"peepants"
-	,"userhost":	"peepants@github.com"
+	,"realname":	"botface"
+	,"userhost":	"botface@github.com"
 };
 
 /* module object */
-modules["thief"] = {
-	"name":			"Thief"
-	,"file":		"./modules/thief"
-	,"enabled":		false
-	,"channels":	[
-		"#node.js"
-	]
-};
-
 modules["test"] = {
 	"name":			"Test"
 	,"file":		"./modules/test"
@@ -62,26 +52,6 @@ modules["test"] = {
 		"#node.js"
 	]
 };
-
-modules["thief2"] = {
-	"name":			"Thief"
-	,"file":		"./modules/thief"
-	,"enabled":		false
-	,"channels":	[
-		"#node.js"
-	]
-};
-
-modules["db"] = {
-	"name":			"JSON Database"
-	,"file":		"./modules/db"
-	,"enabled":		true
-	,"channels":	[
-		"#coa-admin",
-		"#node.js"
-	]
-};
-
 
 /* dont fuck with me */
 module.exports.servers = servers;
