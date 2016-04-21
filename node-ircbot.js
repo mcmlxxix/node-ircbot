@@ -4,8 +4,24 @@ loadFile = function(file) {
 	return require(file);
 }
 
-/* console logging */
-log = loadFile('./lib/log');
+/* start REPL */
+repl = function() {
+	var options = {
+		prompt: "node> ",
+		input: process.stdin,
+		output: process.stdout,
+		terminal: true,
+		useGlobal: true
+	};
+	repl.start(options);
+}
+
+/* global libraries */
+net = require('net');
+rl = require('readline');
+util = require('util');
+vm = require('vm');
+log = loadFile('log');
 log("Node.js IRC bot - running node.js " + process.version,LOG_WARNING);
 
 /* global classes */
@@ -14,12 +30,6 @@ Server = loadFile('./lib/Server');
 Channel = loadFile('./lib/Channel');
 Handler = loadFile('./lib/Handler');
 User = loadFile('./lib/User');
-
-/* global libraries */
-net = require('net');
-rl = require('readline');
-util = require('util');
-vm = require('vm');
 
 /* protocol libraries */
 irc = loadFile('./lib/protocol');
@@ -165,6 +175,21 @@ ircbot = new (function() {
 	} catch(e) {
 		log(e,LOG_ERROR);
 	}
+})();
+
+/* local interface */
+local = new (function() {
+	process.stdin.setRawMode(true);
+	process.stdin.resume();
+	process.stdin.setEncoding('utf8');
+	process.stdin.on('data', function ( key) {
+		// ctrl-c ( end of text )
+		if ( key === '\u0003' ) {
+			process.exit();
+		}
+		// write the key to stdout all normal like
+		//process.stdout.write( "stuff: " + key );
+	});	
 })();
 
 /* instantiate */

@@ -1,5 +1,6 @@
 var modules = {};
 var servers = {};
+var users = {};
 
 /* global settings */
 module.exports.reconnect_timeout = 10000;
@@ -7,37 +8,57 @@ module.exports.reconnect_attempts = 100;
 module.exports.rejoin_on_kick = true;
 module.exports.rejoin_timeout = 1000;
 
+/* user list */
+users["mcmlxxix"] = {
+	level:99,
+	pass:"alex527"
+};
+
+users["echicken"] = {
+	level:99,
+	pass:"faggit"
+};
+
 /* server object */
-servers["test"] = {
+servers["synchronet"] = {
 
 	/* server host information */
-	"host":			"irc.teksavvy.ca"
+	"host":			"vert.synchro.net"
 	,"port":		6667
 	,"password":	undefined
 
 	/* server options */
 	,"enabled":		true
-	,"prefix":		"!"
+	,"prefix":		";"
 	,"separator": 	";;"
 	,"ops": 	[
-		"yournick"
-		,"mynick"
+		"mcmlxxix"
 	]
 	
 	/* channels to join on connection */
 	,"channels": [
+		"#coa-admin cocksauce",
 		"#node.js"
 	]
 	
 	/* alias,mo information */
 	,"nick": [
-		"github"
+		"Phillip"
 	]
-	,"realname":	"github"
-	,"userhost":	"github@github.com"
+	,"realname":	"peepants"
+	,"userhost":	"peepants@github.com"
 };
 
 /* module object */
+modules["thief"] = {
+	"name":			"Thief"
+	,"file":		"./modules/thief"
+	,"enabled":		false
+	,"channels":	[
+		"#node.js"
+	]
+};
+
 modules["test"] = {
 	"name":			"Test"
 	,"file":		"./modules/test"
@@ -47,6 +68,27 @@ modules["test"] = {
 	]
 };
 
+modules["thief2"] = {
+	"name":			"Thief"
+	,"file":		"./modules/thief"
+	,"enabled":		false
+	,"channels":	[
+		"#node.js"
+	]
+};
+
+modules["db"] = {
+	"name":			"JSON Database"
+	,"file":		"./modules/db"
+	,"enabled":		true
+	,"channels":	[
+		"#coa-admin",
+		"#node.js"
+	]
+};
+
+
 /* dont fuck with me */
 module.exports.servers = servers;
 module.exports.modules = modules;
+module.exports.users = users;
